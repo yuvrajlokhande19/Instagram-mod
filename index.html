@@ -20,8 +20,12 @@
       padding: 20px;
     }
     .logo {
-      font-size: 40px;
-      margin-bottom: 20px;
+      width: 200px;
+      height: 80px;
+      margin-bottom: 30px;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNmZmYiLz48Y2lyY2xlIGN4PSI0MCIgY3k9IjQwIiByPSIzMCIgZmlsbD0iIzAwOTVmNiIvPjxjaXJjbGUgY3g9IjgwIiBjeT0iNDAiIHI9IjMwIiBmaWxsPSIjMDA5NWY2Ii8+PGNpcmNsZSBjeD0iMTIwIiBjeT0iNDAiIHI9IjMwIiBmaWxsPSIjMDA5NWY2Ii8+PC9zdmc+');
+      background-size: contain;
+      background-repeat: no-repeat;
       cursor: pointer;
     }
     .login-form {
@@ -55,7 +59,8 @@
     }
     @media (max-width: 480px) {
       .logo {
-        font-size: 30px;
+        width: 150px;
+        height: 60px;
       }
       .login-form {
         width: 90%;
@@ -64,7 +69,7 @@
   </style>
 </head>
 <body>
-  <div class="logo" id="instagramLogo">Instagram</div>
+  <div class="logo" id="instagramLogo"></div>
   <div class="login-form">
     <h2>Login</h2>
     <form id="loginForm">
