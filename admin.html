@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #eee; }
+        #loginBox, #adminContent { background: white; padding: 20px; border-radius: 10px; max-width: 800px; margin: auto; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background: #333; color: white; }
+        .hidden { display: none; }
+        input { width: 100%; padding: 10px; margin-bottom: 10px; box-sizing: border-box; }
+    </style>
+</head>
+<body>
+
+    <div id="loginBox">
+        <h2>Admin Login</h2>
+        <input type="text" id="user" placeholder="Username">
+        <input type="password" id="pass" placeholder="Password">
+        <button onclick="login()" style="width:100%; padding:10px; background:#c0392b; color:white; border:none; cursor:pointer;">Login</button>
+    </div>
+
+    <div id="adminContent" class="hidden">
+        <h2>All Appointments</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Patient</th>
+                    <th>Doctor</th>
+                    <th>Date</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody id="dataTable"></tbody>
+        </table>
+        <br>
+        <button onclick="location.reload()">Logout</button>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCXgAZZlh_TS3CfqZ9N5ZXDAmHBnaWYIiI",
+            authDomain: "myproject-2807b.firebaseapp.com",
+            projectId: "myproject-2807b",
+            storageBucket: "myproject-2807b.firebasestorage.app"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Simple Login Logic
+        window.login = async function() {
+            const u = document.getElementById('user').value;
+            const p = document.getElementById('pass').value;
+
+            if(u === "admin" && p === "admin123") {
+                document.getElementById('loginBox').classList.add('hidden');
+                document.getElementById('adminContent').classList.remove('hidden');
+                loadData();
+            } else {
+                alert("Wrong credentials!");
+            }
+        }
+
+        async function loadData() {
+            const querySnapshot = await getDocs(collection(db, "appointments"));
+            const table = document.getElementById('dataTable');
+            table.innerHTML = "";
+            querySnapshot.forEach((doc) => {
+                const data = doc.data();
+                table.innerHTML += `
+                    <tr>
+                        <td>${data.patient}</td>
+                        <td>${data.doctor}</td>
+                        <td>${data.date}</td>
+                        <td>${data.email}</td>
+                    </tr>
+                `;
+            });
+        }
+    </script>
+</body>
+</html>
