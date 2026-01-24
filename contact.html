@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us | LLA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --dark: #121212; --matte: #1e1e1e; --accent: #c5a059; }
+        body { background: var(--dark); color: #fff; font-family: 'Roboto'; margin: 0; }
+        header { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: #000; border-bottom: 1px solid #333; z-index: 1000; box-sizing: border-box;}
+        .logo { color: var(--accent); font-weight: bold; font-size: 24px; text-decoration: none; }
+        nav a { color: #fff; text-decoration: none; margin-left: 25px; font-size: 14px; text-transform: uppercase; }
+        
+        .contact-container { padding: 150px 10%; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        .info-list { display: flex; flex-direction: column; gap: 20px; }
+        .lawyer-contact { background: var(--matte); padding: 15px; border-radius: 8px; border-left: 3px solid var(--accent); }
+        .contact-form { background: var(--matte); padding: 40px; border-radius: 15px; }
+        input, textarea { width: 100%; padding: 12px; margin-bottom: 20px; background: #111; border: 1px solid #444; color: #fff; border-radius: 5px; }
+        .btn-send { background: var(--accent); color: #000; border: none; padding: 15px 40px; font-weight: bold; cursor: pointer; border-radius: 5px; }
+        
+        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        footer { background: #0a0a0a; padding: 50px 10%; border-top: 1px solid #333; text-align: center; }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">LLA ASSOCIATES</a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="team.html">Our Team</a>
+            <a href="contact.html">Contact</a>
+            <a href="appointment.html">Book Appointment</a>
+        </nav>
+    </header>
+
+    <div class="contact-container">
+        <div class="info-list reveal">
+            <h1 style="color:var(--accent)">Directory</h1>
+            <div class="lawyer-contact">
+                <strong>ADV. A.V. Linpane</strong><br>Email: av.linpane@lla.com | Office: +91 98XXX XXX01
+            </div>
+            <div class="lawyer-contact">
+                <strong>ADV. Sandya Linpane</strong><br>Email: sandya@lla.com | Office: +91 98XXX XXX02
+            </div>
+            <div class="lawyer-contact">
+                <strong>Akshay Linpane</strong><br>Email: akshay@lla.com | Office: +91 98XXX XXX03
+            </div>
+            <div class="lawyer-contact">
+                <strong>Sankalp Borkar</strong><br>Email: sankalp@lla.com | Office: +91 98XXX XXX04
+            </div>
+            <!-- More added dynamically -->
+            <div style="margin-top:20px;">
+                <h3>Main Office</h3>
+                <p>Legal Chambers, Block 7, South Extension, New Delhi.</p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.6859424641666!2d77.2185566150807!3d28.54992528245104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce27072555555%3A0x6b44a691516e8b78!2sSupreme%20Court%20of%20India!5e0!3m2!1sen!2sin!4v1625656565656!5m2!1sen!2sin" width="100%" height="250" style="border:0; border-radius:10px; margin-top:20px;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+
+        <div class="contact-form reveal">
+            <h2 style="margin-bottom:30px;">Direct Inquiry</h2>
+            <form action="https://formsubmit.co/lokhandeyuvraj19@gmail.com" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Email Address" required>
+                <input type="text" name="phone" placeholder="Phone Number">
+                <textarea name="message" rows="6" placeholder="Describe your legal requirement..."></textarea>
+                <button type="submit" class="btn-send">SEND MESSAGE</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Linpane Legal Associates</p>
+    </footer>
+
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                if (reveals[i].getBoundingClientRect().top < window.innerHeight - 100) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        window.onload = reveal;
+    </script>
+</body>
+</html>
