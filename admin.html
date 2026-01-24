@@ -2,46 +2,79 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Panel</title>
+    <title>Admin Panel | LLA</title>
     <style>
-        body { font-family: sans-serif; padding: 20px; background: #eee; }
-        #loginBox, #adminContent { background: white; padding: 20px; border-radius: 10px; max-width: 800px; margin: auto; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
-        th { background: #333; color: white; }
-        .hidden { display: none; }
-        input { width: 100%; padding: 10px; margin-bottom: 10px; box-sizing: border-box; }
+        :root { --dark: #121212; --matte: #1e1e1e; --accent: #c5a059; }
+        body { background: var(--dark); color: #fff; font-family: 'Roboto'; margin: 0; }
+        
+        /* Blur background logic */
+        #login-screen { position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); display: flex; justify-content: center; align-items: center; z-index: 5000; }
+        .login-box { background: var(--matte); padding: 40px; border-radius: 10px; border: 1px solid var(--accent); text-align: center; }
+
+        /* Dashboard Styles */
+        #dashboard { display: none; padding: 100px 50px; }
+        header { position: fixed; top: 0; width: 100%; padding: 15px 50px; background: #000; display: flex; justify-content: space-between; border-bottom: 1px solid var(--accent); box-sizing: border-box; }
+        
+        .admin-nav { display: flex; gap: 15px; margin-bottom: 30px; }
+        .admin-nav button { background: var(--matte); color: var(--accent); border: 1px solid var(--accent); padding: 10px 20px; cursor: pointer; transition: 0.3s; }
+        .admin-nav button:hover { background: var(--accent); color: #000; }
+
+        /* Record Cards Animation */
+        .record-card { background: var(--matte); margin-bottom: 15px; padding: 20px; border-radius: 8px; border-left: 5px solid var(--accent); opacity: 0; transform: translateX(-20px); animation: slideIn 0.5s forwards; }
+        @keyframes slideIn { to { opacity: 1; transform: translateX(0); } }
+
+        /* Calendar Mockup */
+        .calendar-view { background: #222; padding: 20px; border-radius: 10px; margin-bottom: 30px; border: 1px solid #444; }
+        
+        /* Modal */
+        .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #2d2d2d; padding: 30px; border-radius: 10px; display: none; z-index: 6000; border: 1px solid var(--accent); box-shadow: 0 0 50px #000; }
+        textarea { width: 100%; background: #111; color: #fff; border: 1px solid #444; padding: 10px; border-radius: 5px; }
     </style>
 </head>
 <body>
 
-    <div id="loginBox">
-        <h2>Admin Login</h2>
-        <input type="text" id="user" placeholder="Username">
-        <input type="password" id="pass" placeholder="Password">
-        <button onclick="login()" style="width:100%; padding:10px; background:#c0392b; color:white; border:none; cursor:pointer;">Login</button>
+    <div id="login-screen">
+        <div class="login-box">
+            <h2 style="color:var(--accent)">LLA ADMIN ACCESS</h2>
+            <input type="text" id="user" placeholder="Admin ID" style="padding:10px; width:80%"><br><br>
+            <input type="password" id="pass" placeholder="Password" style="padding:10px; width:80%"><br><br>
+            <button onclick="checkLogin()" style="background:var(--accent); border:none; padding:10px 40px; cursor:pointer;">ENTER DASHBOARD</button>
+        </div>
     </div>
 
-    <div id="adminContent" class="hidden">
-        <h2>All Appointments</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Patient</th>
-                    <th>Doctor</th>
-                    <th>Date</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody id="dataTable"></tbody>
-        </table>
-        <br>
-        <button onclick="location.reload()">Logout</button>
+    <header>
+        <span class="logo" style="color:var(--accent); font-weight:bold; font-size:20px;">LLA CONTROL PANEL</span>
+        <button onclick="location.reload()" style="background:none; color:red; border:none; cursor:pointer;">Logout</button>
+    </header>
+
+    <div id="dashboard">
+        <div class="admin-nav">
+            <button onclick="openEditor('notes')">📝 Notes</button>
+            <button onclick="openEditor('routine')">📅 Routine</button>
+            <button onclick="openEditor('hearings')">⚖️ Hearing Dates</button>
+        </div>
+
+        <div class="calendar-view">
+            <h3>Upcoming Schedule (Calendar View)</h3>
+            <input type="date" id="calPicker" style="background:#000; color:var(--accent); padding:10px;">
+            <div id="daySchedule" style="margin-top:10px; font-size:14px; color:#aaa;">Select a date to see hearings...</div>
+        </div>
+
+        <h2 style="border-bottom: 1px solid var(--accent); padding-bottom: 10px;">Appointment Requests</h2>
+        <div id="requestList">
+            </div>
+    </div>
+
+    <div id="textModal" class="modal">
+        <h3 id="modalTitle"></h3>
+        <textarea id="modalText" rows="10" cols="50"></textarea><br><br>
+        <button onclick="saveAdminData()" style="background:var(--accent); border:none; padding:10px 20px;">SAVE DATA</button>
+        <button onclick="document.getElementById('textModal').style.display='none'">CANCEL</button>
     </div>
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCXgAZZlh_TS3CfqZ9N5ZXDAmHBnaWYIiI",
@@ -49,40 +82,52 @@
             projectId: "myproject-2807b",
             storageBucket: "myproject-2807b.firebasestorage.app"
         };
-
         const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
+        const db = getDatabase(app);
 
-        // Simple Login Logic
-        window.login = async function() {
-            const u = document.getElementById('user').value;
-            const p = document.getElementById('pass').value;
-
-            if(u === "admin" && p === "admin123") {
-                document.getElementById('loginBox').classList.add('hidden');
-                document.getElementById('adminContent').classList.remove('hidden');
+        window.checkLogin = () => {
+            if(document.getElementById('user').value === "ashu999" && document.getElementById('pass').value === "pass123") {
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
                 loadData();
-            } else {
-                alert("Wrong credentials!");
-            }
-        }
+            } else { alert("Access Denied"); }
+        };
 
-        async function loadData() {
-            const querySnapshot = await getDocs(collection(db, "appointments"));
-            const table = document.getElementById('dataTable');
-            table.innerHTML = "";
-            querySnapshot.forEach((doc) => {
-                const data = doc.data();
-                table.innerHTML += `
-                    <tr>
-                        <td>${data.patient}</td>
-                        <td>${data.doctor}</td>
-                        <td>${data.date}</td>
-                        <td>${data.email}</td>
-                    </tr>
-                `;
+        function loadData() {
+            onValue(ref(db, 'appointments'), (snap) => {
+                const list = document.getElementById('requestList');
+                list.innerHTML = "";
+                let delay = 0.1;
+                snap.forEach(child => {
+                    const val = child.val();
+                    const card = document.createElement('div');
+                    card.className = "record-card";
+                    card.style.animationDelay = `${delay}s`;
+                    card.innerHTML = `
+                        <strong>${val.name}</strong> (${val.contact})<br>
+                        <span style="color:var(--accent)">Lawyer: ${val.lawyer}</span> | Date: ${val.date} | Case: ${val.case}
+                    `;
+                    list.appendChild(card);
+                    delay += 0.1;
+                });
             });
         }
+
+        let activeMode = '';
+        window.openEditor = (mode) => {
+            activeMode = mode;
+            document.getElementById('modalTitle').innerText = "Edit " + mode.toUpperCase();
+            document.getElementById('textModal').style.display = 'block';
+            onValue(ref(db, 'admin/' + mode), (s) => {
+                document.getElementById('modalText').value = s.val() || "";
+            }, { onlyOnce: true });
+        };
+
+        window.saveAdminData = () => {
+            set(ref(db, 'admin/' + activeMode), document.getElementById('modalText').value);
+            alert("Database Updated Successfully");
+            document.getElementById('textModal').style.display = 'none';
+        };
     </script>
 </body>
 </html>
