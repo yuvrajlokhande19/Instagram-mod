@@ -22,12 +22,21 @@
 
         header { 
             display: flex; justify-content: space-between; align-items: center; 
-            padding: 20px 8%; background: rgba(15,15,15,0.98); 
+            padding: 22px 8%; background: rgba(15,15,15,0.98); 
             border-bottom: 1px solid #2a2a2a; position: sticky; top: 0; z-index: 1000;
             backdrop-filter: blur(10px);
         }
-        .logo-area { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .logo-text { font-family: 'Playfair Display', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 24px; letter-spacing: 1px; font-weight: 700; }
+        .logo-area { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+        /* Slightly increased logo and brand text size */
+        .logo-text { 
+            font-family: 'Playfair Display', serif; 
+            background: var(--gold-gradient); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            font-size: 27px; 
+            letter-spacing: 1px; 
+            font-weight: 700; 
+        }
         
         nav ul { display: flex; list-style: none; gap: 35px; }
         nav a { 
@@ -58,7 +67,7 @@
         }
         .expert-card:hover { border-color: rgba(212, 183, 143, 0.4); transform: translateY(-5px); background: #282828; }
         .expert-card.selected { border-color: var(--accent-gold-light); background: #2a2a2a; box-shadow: 0 10px 30px rgba(179, 156, 125, 0.2); }
-        .expert-icon { width: 50px; height: 50px; margin: 0 auto 15px; opacity: 0.8; }
+        .expert-icon { width: 55px; height: 55px; margin: 0 auto 15px; opacity: 0.8; }
         .expert-card h3 { color: var(--accent-gold-light); font-size: 18px; margin-bottom: 5px; font-family: 'Playfair Display', serif; }
         .expert-card p { font-size: 13px; color: var(--text-grey); }
 
@@ -84,7 +93,6 @@
         .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(179, 156, 125, 0.3); }
         .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
-        /* Updated Footer to Match Screenshot 211636 */
         .premium-footer {
             background-color: #080808;
             padding: 80px 8% 40px;
@@ -159,6 +167,7 @@
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="team.html">Our Team</a></li>
+                <li><a href="contact.html">Contact</a></li> <!-- Added Contact Button -->
                 <li><a href="appointment.html" class="active">Book Appointment</a></li>
             </ul>
         </nav>
@@ -297,11 +306,13 @@
         </div>
     </footer>
 
+    <!-- Firebase 12.8.0 Module Integration -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-analytics.js";
         import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
 
+        // Exact Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyCXgAZZlh_TS3CfqZ9N5ZXDAmHBnaWYIiI",
             authDomain: "myproject-2807b.firebaseapp.com",
@@ -312,10 +323,12 @@
             measurementId: "G-R49GPZWL76"
         };
 
+        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         const db = getDatabase(app);
 
+        // Global function for UI selection
         window.selectExpert = (el, name) => {
             document.querySelectorAll('.expert-card').forEach(c => c.classList.remove('selected'));
             el.classList.add('selected');
@@ -323,12 +336,16 @@
             document.getElementById('displayLawyer').value = name;
         };
 
+        // Modal Logic
         window.closeNotice = () => {
+            localStorage.setItem('lla_notice_accepted', 'true'); // Cache it
             document.getElementById('legal-notice').style.display = 'none';
         };
 
         window.onload = () => {
-            document.getElementById('legal-notice').style.display = 'flex';
+            if (!localStorage.getItem('lla_notice_accepted')) {
+                document.getElementById('legal-notice').style.display = 'flex';
+            }
         };
 
         const form = document.getElementById('appointmentForm');
@@ -350,18 +367,19 @@
             data.timestamp = new Date().toLocaleString();
 
             try {
-                // Firebase logic preserved
+                // 1. Firebase Logging (Connects to Admin)
                 const appointmentsRef = ref(db, 'appointments');
                 const newEntryRef = push(appointmentsRef);
                 await set(newEntryRef, data);
 
-                // FormSubmit logic preserved
+                // 2. FormSubmit AJAX Call (Email)
                 const response = await fetch("https://formsubmit.co/ajax/lokhandeyuvraj19@gmail.com", {
                     method: "POST",
                     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                     body: JSON.stringify({
                         ...data,
-                        _subject: "NEW APPOINTMENT: " + data.selected_lawyer
+                        _subject: "NEW APPOINTMENT: " + data.selected_lawyer,
+                        _template: "table"
                     })
                 });
 
