@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Appointment</title>
+    <style>
+        body { font-family: sans-serif; background: #f4f7f6; padding: 20px; }
+        form { max-width: 400px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        input, select, button { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        button { background: #3498db; color: white; border: none; font-size: 16px; cursor: pointer; }
+        button:hover { background: #2980b9; }
+    </style>
+</head>
+<body>
+    <form id="bookingForm">
+        <h2>Book an Appointment</h2>
+        <input type="text" id="patientName" placeholder="Full Name" required>
+        <input type="email" id="patientEmail" placeholder="Email Address" required>
+        <select id="doctorName">
+            <option value="Dr. Smith">Dr. Smith (Cardiology)</option>
+            <option value="Dr. Sarah">Dr. Sarah (Neurology)</option>
+        </select>
+        <input type="date" id="appDate" required>
+        <button type="submit">Confirm Booking</button>
+    </form>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCXgAZZlh_TS3CfqZ9N5ZXDAmHBnaWYIiI",
+            authDomain: "myproject-2807b.firebaseapp.com",
+            projectId: "myproject-2807b",
+            storageBucket: "myproject-2807b.firebasestorage.app",
+            messagingSenderId: "656042108670",
+            appId: "1:656042108670:web:a357c52ccef5c72b9727af"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        document.getElementById('bookingForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            btn.innerText = "Booking...";
+
+            try {
+                await addDoc(collection(db, "appointments"), {
+                    patient: document.getElementById('patientName').value,
+                    email: document.getElementById('patientEmail').value,
+                    doctor: document.getElementById('doctorName').value,
+                    date: document.getElementById('appDate').value,
+                    timestamp: new Date()
+                });
+                alert("Appointment booked successfully!");
+                location.reload();
+            } catch (error) {
+                console.error(error);
+                alert("Error booking: " + error.message);
+            }
+        });
+    </script>
+</body>
+</html>
