@@ -2,79 +2,200 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Panel | LLA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Linpane Legal Associates</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        :root { --dark: #121212; --matte: #1e1e1e; --accent: #c5a059; }
-        body { background: var(--dark); color: #fff; font-family: 'Roboto'; margin: 0; }
-        
-        /* Blur background logic */
-        #login-screen { position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); display: flex; justify-content: center; align-items: center; z-index: 5000; }
-        .login-box { background: var(--matte); padding: 40px; border-radius: 10px; border: 1px solid var(--accent); text-align: center; }
+        :root {
+            --bg-dark: #0f0f0f;
+            --card-dark: #1a1a1a;
+            --accent-gold: #d4b78f;
+            --gold-gradient: linear-gradient(135deg, #b39c7d, #d4b78f);
+            --text-white: #ffffff;
+            --text-grey: #a0a0a0;
+        }
 
-        /* Dashboard Styles */
-        #dashboard { display: none; padding: 100px 50px; }
-        header { position: fixed; top: 0; width: 100%; padding: 15px 50px; background: #000; display: flex; justify-content: space-between; border-bottom: 1px solid var(--accent); box-sizing: border-box; }
-        
-        .admin-nav { display: flex; gap: 15px; margin-bottom: 30px; }
-        .admin-nav button { background: var(--matte); color: var(--accent); border: 1px solid var(--accent); padding: 10px 20px; cursor: pointer; transition: 0.3s; }
-        .admin-nav button:hover { background: var(--accent); color: #000; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background-color: var(--bg-dark); 
+            color: var(--text-white); 
+            font-family: 'Roboto', sans-serif; 
+            overflow-x: hidden;
+        }
 
-        /* Record Cards Animation */
-        .record-card { background: var(--matte); margin-bottom: 15px; padding: 20px; border-radius: 8px; border-left: 5px solid var(--accent); opacity: 0; transform: translateX(-20px); animation: slideIn 0.5s forwards; }
-        @keyframes slideIn { to { opacity: 1; transform: translateX(0); } }
-
-        /* Calendar Mockup */
-        .calendar-view { background: #222; padding: 20px; border-radius: 10px; margin-bottom: 30px; border: 1px solid #444; }
+        /* Animated Login Overlay */
+        #login-overlay { 
+            position: fixed; inset: 0; background: #000; z-index: 9999; 
+            display: flex; align-items: center; justify-content: center;
+            transition: opacity 0.8s ease;
+        }
+        .login-card { 
+            background: var(--card-dark); padding: 50px; border: 1px solid var(--accent-gold); 
+            border-radius: 20px; text-align: center; width: 400px;
+            box-shadow: 0 0 50px rgba(179, 156, 125, 0.1);
+            animation: slideIn 0.6s ease-out;
+        }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
         
-        /* Modal */
-        .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #2d2d2d; padding: 30px; border-radius: 10px; display: none; z-index: 6000; border: 1px solid var(--accent); box-shadow: 0 0 50px #000; }
-        textarea { width: 100%; background: #111; color: #fff; border: 1px solid #444; padding: 10px; border-radius: 5px; }
+        input { 
+            background: #252525; border: 1px solid #333; color: #fff; 
+            padding: 15px; border-radius: 8px; width: 100%; margin-bottom: 20px;
+            outline: none; transition: 0.3s;
+        }
+        input:focus { border-color: var(--accent-gold); }
+        .login-btn { 
+            background: var(--gold-gradient); width: 100%; border: none; padding: 15px; 
+            font-weight: bold; cursor: pointer; border-radius: 8px; text-transform: uppercase;
+        }
+
+        /* Dashboard Layout */
+        #main-dashboard { display: none; padding: 120px 5% 50px; animation: fadeIn 1s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        header { 
+            position: fixed; top: 0; width: 100%; background: rgba(15,15,15,0.95); 
+            padding: 20px 5%; border-bottom: 1px solid #222; 
+            display: flex; justify-content: space-between; align-items: center; z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        .logo-text { font-family: 'Playfair Display', serif; color: var(--accent-gold); font-size: 24px; }
+
+        .dashboard-grid { 
+            display: grid; grid-template-columns: 350px 1fr; gap: 40px; 
+        }
+
+        /* Calendar Sidebar */
+        .sidebar { background: var(--card-dark); border-radius: 15px; padding: 25px; border: 1px solid #2a2a2a; height: fit-content; }
+        .sidebar h3 { color: var(--accent-gold); margin-bottom: 20px; font-family: 'Playfair Display', serif; }
+        
+        .calendar-container { margin-bottom: 30px; }
+        #admin-calendar { width: 100%; border-collapse: collapse; }
+        #admin-calendar th { color: var(--accent-gold); padding: 10px; font-size: 12px; }
+        #admin-calendar td { text-align: center; padding: 12px 5px; cursor: pointer; border-radius: 5px; transition: 0.3s; font-size: 14px; }
+        #admin-calendar td:hover { background: #333; }
+        #admin-calendar td.today { border: 1px solid var(--accent-gold); color: var(--accent-gold); }
+        #admin-calendar td.selected { background: var(--accent-gold); color: #000; font-weight: bold; }
+
+        /* Content Area */
+        .content-area { display: flex; flex-direction: column; gap: 30px; }
+        
+        .management-section { 
+            background: var(--card-dark); border-radius: 15px; padding: 30px; 
+            border: 1px solid #2a2a2a; transition: transform 0.3s;
+        }
+        .management-section:hover { transform: translateY(-5px); }
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        .section-header h2 { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--accent-gold); }
+
+        textarea { 
+            width: 100%; background: #0c0c0c; border: 1px solid #333; color: #fff; 
+            padding: 15px; border-radius: 8px; font-family: 'Roboto'; font-size: 14px; 
+            resize: vertical; min-height: 100px; outline: none; transition: 0.3s;
+        }
+        textarea:focus { border-color: var(--accent-gold); }
+
+        .save-btn { 
+            background: var(--gold-gradient); color: #000; border: none; 
+            padding: 10px 25px; border-radius: 5px; cursor: pointer; 
+            font-weight: bold; margin-top: 15px; transition: 0.3s;
+        }
+        .save-btn:hover { opacity: 0.9; transform: scale(1.05); }
+
+        /* Appointments List */
+        .appointment-card { 
+            background: #222; padding: 20px; border-radius: 10px; margin-bottom: 15px;
+            border-left: 4px solid var(--accent-gold); position: relative;
+            animation: slideUp 0.5s ease-out;
+        }
+        @keyframes slideUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+        .tag { background: var(--accent-gold); color: #000; padding: 2px 8px; font-size: 10px; font-weight: bold; border-radius: 3px; text-transform: uppercase; }
+
+        #toast { 
+            position: fixed; bottom: 30px; right: 30px; background: var(--gold-gradient); 
+            color: #000; padding: 15px 30px; border-radius: 8px; font-weight: bold; 
+            display: none; z-index: 10000; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
     </style>
 </head>
 <body>
 
-    <div id="login-screen">
-        <div class="login-box">
-            <h2 style="color:var(--accent)">LLA ADMIN ACCESS</h2>
-            <input type="text" id="user" placeholder="Admin ID" style="padding:10px; width:80%"><br><br>
-            <input type="password" id="pass" placeholder="Password" style="padding:10px; width:80%"><br><br>
-            <button onclick="checkLogin()" style="background:var(--accent); border:none; padding:10px 40px; cursor:pointer;">ENTER DASHBOARD</button>
+    <div id="login-overlay">
+        <div class="login-card">
+            <h2 style="color:var(--accent-gold); margin-bottom:25px; font-family:'Playfair Display', serif;">ADMIN ACCESS</h2>
+            <input type="text" id="user" placeholder="Admin Username">
+            <input type="password" id="pass" placeholder="Password">
+            <button onclick="login()" class="login-btn">Secure Login</button>
         </div>
     </div>
 
     <header>
-        <span class="logo" style="color:var(--accent); font-weight:bold; font-size:20px;">LLA CONTROL PANEL</span>
-        <button onclick="location.reload()" style="background:none; color:red; border:none; cursor:pointer;">Logout</button>
+        <div class="logo-text">LLA COMMAND CENTER</div>
+        <div style="display:flex; align-items:center; gap:20px;">
+            <span id="current-user" style="color:var(--text-grey); font-size:14px;"></span>
+            <button onclick="location.reload()" style="background:transparent; border:1px solid #ff4d4d; color:#ff4d4d; padding:8px 15px; border-radius:5px; cursor:pointer;">Logout</button>
+        </div>
     </header>
 
-    <div id="dashboard">
-        <div class="admin-nav">
-            <button onclick="openEditor('notes')">📝 Notes</button>
-            <button onclick="openEditor('routine')">📅 Routine</button>
-            <button onclick="openEditor('hearings')">⚖️ Hearing Dates</button>
-        </div>
-
-        <div class="calendar-view">
-            <h3>Upcoming Schedule (Calendar View)</h3>
-            <input type="date" id="calPicker" style="background:#000; color:var(--accent); padding:10px;">
-            <div id="daySchedule" style="margin-top:10px; font-size:14px; color:#aaa;">Select a date to see hearings...</div>
-        </div>
-
-        <h2 style="border-bottom: 1px solid var(--accent); padding-bottom: 10px;">Appointment Requests</h2>
-        <div id="requestList">
+    <div id="main-dashboard">
+        <div class="dashboard-grid">
+            <!-- Sidebar with Calendar -->
+            <div class="sidebar">
+                <h3>Select Date</h3>
+                <div class="calendar-container">
+                    <h4 id="monthYear" style="text-align:center; margin-bottom:10px; color:var(--text-grey);"></h4>
+                    <table id="admin-calendar">
+                        <thead>
+                            <tr><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr>
+                        </thead>
+                        <tbody id="calendar-body"></tbody>
+                    </table>
+                </div>
+                
+                <div style="border-top:1px solid #333; padding-top:20px;">
+                    <h3 style="font-size:18px;">Global Notes</h3>
+                    <textarea id="global_notes" placeholder="Quick sticky notes for office..."></textarea>
+                    <button class="save-btn" onclick="saveData('global_notes')">Update Notes</button>
+                </div>
             </div>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <h1 id="selected-date-title" style="font-family:'Playfair Display', serif; color:var(--accent-gold);">Dashboard: Today</h1>
+                
+                <div class="management-section">
+                    <div class="section-header">
+                        <h2>Daily Routine / Schedule</h2>
+                        <span id="routine-status" style="font-size:12px; color:var(--text-grey);">Synced</span>
+                    </div>
+                    <textarea id="daily_routine" placeholder="Enter meetings, court visits, tasks for this date..."></textarea>
+                    <button class="save-btn" onclick="saveData('daily_routine')">Save Schedule</button>
+                </div>
+
+                <div class="management-section">
+                    <div class="section-header">
+                        <h2>Hearing Dates & Case Updates</h2>
+                    </div>
+                    <textarea id="hearing_dates" placeholder="Enter specific hearing details, court room numbers etc..."></textarea>
+                    <button class="save-btn" onclick="saveData('hearing_dates')">Save Hearings</button>
+                </div>
+
+                <div class="management-section">
+                    <div class="section-header">
+                        <h2>Client Appointments</h2>
+                    </div>
+                    <div id="appointmentList">
+                        <p style="color:var(--text-grey); font-style:italic;">Loading appointments...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div id="textModal" class="modal">
-        <h3 id="modalTitle"></h3>
-        <textarea id="modalText" rows="10" cols="50"></textarea><br><br>
-        <button onclick="saveAdminData()" style="background:var(--accent); border:none; padding:10px 20px;">SAVE DATA</button>
-        <button onclick="document.getElementById('textModal').style.display='none'">CANCEL</button>
-    </div>
+    <div id="toast">Changes Synced to Cloud</div>
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
+        import { getDatabase, ref, onValue, set, get } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCXgAZZlh_TS3CfqZ9N5ZXDAmHBnaWYIiI",
@@ -85,49 +206,133 @@
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
 
-        window.checkLogin = () => {
-            if(document.getElementById('user').value === "ashu999" && document.getElementById('pass').value === "pass123") {
-                document.getElementById('login-screen').style.display = 'none';
-                document.getElementById('dashboard').style.display = 'block';
-                loadData();
-            } else { alert("Access Denied"); }
+        let selectedDate = new Date().toISOString().split('T')[0];
+
+        // Auth
+        window.login = () => {
+            const u = document.getElementById('user').value;
+            const p = document.getElementById('pass').value;
+            if(u === "ashu999" && p === "pass123") {
+                document.getElementById('login-overlay').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('login-overlay').style.display = 'none';
+                    document.getElementById('main-dashboard').style.display = 'block';
+                    document.getElementById('current-user').innerText = "Logged as: " + u;
+                    initDashboard();
+                }, 800);
+            } else { alert("Unauthorized access."); }
         };
 
-        function loadData() {
+        function initDashboard() {
+            renderCalendar();
+            loadDateData(selectedDate);
+            fetchAppointments();
+            
+            // Load global notes
+            onValue(ref(db, 'admin_settings/global_notes'), (snap) => {
+                document.getElementById('global_notes').value = snap.val() || "";
+            });
+        }
+
+        function renderCalendar() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth();
+            document.getElementById('monthYear').innerText = now.toLocaleString('default', { month: 'long', year: 'numeric' });
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const body = document.getElementById('calendar-body');
+            body.innerHTML = "";
+
+            let date = 1;
+            for (let i = 0; i < 6; i++) {
+                let row = document.createElement("tr");
+                for (let j = 0; j < 7; j++) {
+                    let cell = document.createElement("td");
+                    if (i === 0 && j < firstDay) {
+                        cell.innerText = "";
+                    } else if (date > daysInMonth) {
+                        break;
+                    } else {
+                        cell.innerText = date;
+                        const dateStr = `${year}-${String(month+1).padStart(2, '0')}-${String(date).padStart(2, '0')}`;
+                        cell.onclick = () => selectDate(dateStr, cell);
+                        if (dateStr === selectedDate) cell.classList.add('selected');
+                        if (date === now.getDate()) cell.classList.add('today');
+                        date++;
+                    }
+                    row.appendChild(cell);
+                }
+                body.appendChild(row);
+            }
+        }
+
+        window.selectDate = (dateStr, el) => {
+            selectedDate = dateStr;
+            document.querySelectorAll('#admin-calendar td').forEach(td => td.classList.remove('selected'));
+            el.classList.add('selected');
+            document.getElementById('selected-date-title').innerText = "Dashboard: " + dateStr;
+            loadDateData(dateStr);
+        };
+
+        async function loadDateData(date) {
+            const routineRef = ref(db, `admin_calendar/${date}/routine`);
+            const hearingRef = ref(db, `admin_calendar/${date}/hearings`);
+            
+            const rSnap = await get(routineRef);
+            const hSnap = await get(hearingRef);
+            
+            document.getElementById('daily_routine').value = rSnap.val() || "";
+            document.getElementById('hearing_dates').value = hSnap.val() || "";
+        }
+
+        window.saveData = (type) => {
+            const val = document.getElementById(type).value;
+            let path = `admin_calendar/${selectedDate}/${type === 'daily_routine' ? 'routine' : 'hearings'}`;
+            if(type === 'global_notes') path = `admin_settings/global_notes`;
+
+            set(ref(db, path), val).then(() => {
+                showToast();
+            });
+        };
+
+        function fetchAppointments() {
             onValue(ref(db, 'appointments'), (snap) => {
-                const list = document.getElementById('requestList');
+                const list = document.getElementById('appointmentList');
                 list.innerHTML = "";
-                let delay = 0.1;
+                if(!snap.exists()) {
+                    list.innerHTML = "<p style='color:#666;'>No appointments found.</p>";
+                    return;
+                }
                 snap.forEach(child => {
-                    const val = child.val();
+                    const d = child.val();
                     const card = document.createElement('div');
-                    card.className = "record-card";
-                    card.style.animationDelay = `${delay}s`;
+                    card.className = "appointment-card";
                     card.innerHTML = `
-                        <strong>${val.name}</strong> (${val.contact})<br>
-                        <span style="color:var(--accent)">Lawyer: ${val.lawyer}</span> | Date: ${val.date} | Case: ${val.case}
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                            <span class="tag">${d.case_type}</span>
+                            <small style="color:#666;">${d.timestamp}</small>
+                        </div>
+                        <h4 style="color:var(--accent-gold);">${d.name}</h4>
+                        <p style="font-size:13px; margin:5px 0 10px; color:#ccc;">${d.description}</p>
+                        <div style="font-size:12px; display:grid; grid-template-columns:1fr 1fr; gap:5px; color:var(--text-grey);">
+                            <span>📅 ${d.date}</span>
+                            <span>⏰ ${d.time}</span>
+                            <span>👤 w/ ${d.selected_lawyer}</span>
+                            <span>📞 ${d.phone}</span>
+                        </div>
                     `;
-                    list.appendChild(card);
-                    delay += 0.1;
+                    list.prepend(card);
                 });
             });
         }
 
-        let activeMode = '';
-        window.openEditor = (mode) => {
-            activeMode = mode;
-            document.getElementById('modalTitle').innerText = "Edit " + mode.toUpperCase();
-            document.getElementById('textModal').style.display = 'block';
-            onValue(ref(db, 'admin/' + mode), (s) => {
-                document.getElementById('modalText').value = s.val() || "";
-            }, { onlyOnce: true });
-        };
-
-        window.saveAdminData = () => {
-            set(ref(db, 'admin/' + activeMode), document.getElementById('modalText').value);
-            alert("Database Updated Successfully");
-            document.getElementById('textModal').style.display = 'none';
-        };
+        function showToast() {
+            const t = document.getElementById('toast');
+            t.style.display = 'block';
+            setTimeout(() => t.style.display = 'none', 3000);
+        }
     </script>
 </body>
 </html>
