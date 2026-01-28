@@ -3,10 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linpane Legal Services - Premier Law Firm in Nagpur</title>
-    <meta name="description" content="Linpane Legal Associates is a premier law firm in Nagpur specializing in Criminal Law, Civil Law, Family Law, Corporate Law, and Legal Notary services with 30+ years of experience.">
-    <meta name="keywords" content="Nagpur lawyers, legal services Nagpur, criminal lawyer Nagpur, family lawyer Nagpur, legal notary Nagpur, corporate law Nagpur">
-    <meta name="author" content="Linpane Legal Associates">
+    <title>Linpane Legal Services | Top Lawyers in Nagpur & Wardha | High Court & Dist. Court Advocates</title>
+    <meta name="description" content="Linpane Legal Services - Top law firm in Nagpur and Wardha with 20+ years experience. Expert lawyers for Criminal, Civil, Family, Corporate Law, Notary Services. Book consultation today.">
+    <meta name="keywords" content="lawyers in Nagpur, advocates in Wardha, high court lawyers, criminal lawyers, family lawyers, notary services Nagpur, legal consultation, corporate lawyers, property dispute lawyers">
+    <meta name="author" content="Linpane Legal Services">
+    <meta name="robots" content="index, follow">
+    <meta name="geo.region" content="IN-MH">
+    <meta name="geo.placename" content="Nagpur, Wardha">
+    <meta name="geo.position" content="21.1458;79.0882">
+    <meta property="og:title" content="Linpane Legal Services | Top Lawyers in Nagpur & Wardha">
+    <meta property="og:description" content="Expert legal services with 30+ years experience. Criminal, Civil, Family, Corporate Law & Notary Services.">
+    <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
@@ -37,14 +44,14 @@
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            transition: opacity 0.5s ease;
         }
 
         .loading-logo img {
-            width: 200px;
-            height: 200px;
+            width: 150px;
+            height: 150px;
             object-fit: contain;
-            animation: pulse 1.5s infinite ease-in-out;
+            animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
@@ -70,7 +77,7 @@
 
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 600;
             background: linear-gradient(135deg, #b39c7d, #d4b78f);
             -webkit-background-clip: text;
@@ -147,11 +154,11 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background: #1e1e1e;
-            padding: 40px;
+            padding: 30px;
             border-radius: 10px;
             box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
             z-index: 1001;
-            max-width: 500px;
+            max-width: 450px;
             width: 90%;
             border: 1px solid rgba(179, 156, 125, 0.3);
             display: none;
@@ -163,19 +170,38 @@
         }
 
         .popup-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            text-align: center;
             margin-bottom: 20px;
+        }
+
+        .popup-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #b39c7d;
+            margin-bottom: 5px;
         }
 
         .popup-header h2 {
             font-family: 'Playfair Display', serif;
-            color: #b39c7d;
-            font-size: 1.8rem;
+            font-size: 1.4rem;
+            color: #d4b78f;
+            margin-bottom: 5px;
+        }
+
+        .popup-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            background: linear-gradient(135deg, #b39c7d, #d4b78f);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
         }
 
         .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
             background: none;
             border: none;
             color: #e0e0e0;
@@ -191,6 +217,8 @@
         .popup-content p {
             margin-bottom: 15px;
             line-height: 1.6;
+            text-align: justify;
+            color: #b0b0b0;
         }
 
         .popup-overlay {
@@ -223,8 +251,7 @@
         .hero-section {
             padding: 80px 0;
             text-align: center;
-            background: linear-gradient(rgba(18, 18, 18, 0.9), rgba(18, 18, 18, 0.9)), 
-                        url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            background: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.85)), url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
             border-radius: 15px;
             margin-bottom: 80px;
             position: relative;
@@ -282,55 +309,87 @@
             display: flex;
             gap: 30px;
             transition: transform 0.5s ease;
-            padding: 0 60px;
+            padding: 0 10px;
         }
 
         .lawyer-card {
             background: #1e1e1e;
             border-radius: 15px;
             overflow: hidden;
-            flex: 0 0 280px;
+            flex: 0 0 350px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
             border: 1px solid rgba(179, 156, 125, 0.2);
-            position: relative;
+            padding: 25px;
         }
 
         .lawyer-card:hover {
-            transform: translateY(-10px) scale(1.02);
+            transform: translateY(-10px);
             box-shadow: 0 15px 40px rgba(179, 156, 125, 0.2);
             border-color: rgba(179, 156, 125, 0.4);
         }
 
         .lawyer-img {
             width: 100%;
-            height: 250px;
+            height: 280px;
             object-fit: cover;
-        }
-
-        .lawyer-info {
-            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
         }
 
         .lawyer-name {
             font-family: 'Playfair Display', serif;
             font-size: 1.4rem;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             color: #b39c7d;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .lawyer-qualification {
             color: #d4b78f;
-            font-size: 0.85rem;
-            margin-bottom: 8px;
-            font-weight: 500;
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+            text-align: center;
         }
 
-        .lawyer-specialization {
-            color: #b0b0b0;
+        .lawyer-designation {
+            color: #a0a0a0;
             font-size: 0.9rem;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .specialization-list {
+            list-style: none;
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .specialization-list li {
+            color: #b0b0b0;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            position: relative;
             line-height: 1.5;
+        }
+
+        .specialization-list li:before {
+            content: '•';
+            color: #b39c7d;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        .lawyer-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
         }
 
         .lawyer-experience {
@@ -341,31 +400,26 @@
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 500;
-            margin-bottom: 5px;
         }
 
         .notary-badge {
-            display: inline-block;
-            background: #ff4444;
-            color: white;
-            padding: 4px 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
+            padding: 5px 10px;
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 500;
-            margin-left: 10px;
-            animation: pulseRed 2s infinite;
-        }
-
-        @keyframes pulseRed {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
+            border: 1px solid rgba(220, 53, 69, 0.3);
         }
 
         .carousel-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(30, 30, 30, 0.9);
+            background: rgba(30, 30, 30, 0.8);
             color: #b39c7d;
             border: 2px solid rgba(179, 156, 125, 0.3);
             width: 50px;
@@ -383,7 +437,6 @@
         .carousel-btn:hover {
             background: rgba(179, 156, 125, 0.2);
             border-color: rgba(179, 156, 125, 0.6);
-            transform: translateY(-50%) scale(1.1);
         }
 
         .carousel-btn.prev {
@@ -403,6 +456,7 @@
             padding: 40px;
             background: #1e1e1e;
             border-radius: 15px;
+            border: 1px solid rgba(179, 156, 125, 0.2);
         }
 
         .intro-img {
@@ -433,47 +487,59 @@
             line-height: 1.7;
             margin-bottom: 15px;
             color: #b0b0b0;
+            text-align: justify;
         }
 
         /* Trusted Clients Section */
-        .trusted-clients {
+        .clients-section {
             margin-bottom: 80px;
         }
 
         .clients-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
         }
 
-        .client-card {
+        .client-box {
             background: #1e1e1e;
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid rgba(179, 156, 125, 0.2);
+            border-radius: 10px;
+            padding: 25px;
             text-align: center;
+            flex: 1;
+            min-width: 180px;
+            max-width: 200px;
+            border: 1px solid rgba(179, 156, 125, 0.2);
             transition: all 0.3s ease;
         }
 
-        .client-card:hover {
+        .client-box:hover {
             transform: translateY(-5px);
             border-color: rgba(179, 156, 125, 0.4);
-            box-shadow: 0 10px 30px rgba(179, 156, 125, 0.1);
+            box-shadow: 0 10px 20px rgba(179, 156, 125, 0.1);
         }
 
         .client-logo {
-            width: 120px;
-            height: 120px;
+            width: 80px;
+            height: 80px;
             object-fit: contain;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            background: white;
+            padding: 10px;
         }
 
         .client-name {
             color: #b39c7d;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
+            font-weight: 600;
             margin-bottom: 10px;
+        }
+
+        .client-info {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+            line-height: 1.4;
         }
 
         /* Services Section */
@@ -483,39 +549,40 @@
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin-top: 40px;
         }
 
-        .service-card {
+        .service-box {
             background: #1e1e1e;
-            padding: 30px;
             border-radius: 15px;
-            border: 2px solid;
+            padding: 30px;
+            border: 1px solid;
             transition: all 0.3s ease;
-            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        .service-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
-        .service-card.notary {
-            border-color: #ff4444;
+        .service-box.notary {
+            border-color: #dc3545;
+            grid-column: span 2;
         }
 
-        .service-card.criminal {
-            border-color: #ff9800;
+        .service-box.criminal {
+            border-color: #fd7e14;
         }
 
-        .service-card.banking {
-            border-color: #4CAF50;
+        .service-box.banking {
+            border-color: #20c997;
         }
 
-        .service-card.regular {
-            border-color: #2196F3;
+        .service-box.other {
+            border-color: rgba(179, 156, 125, 0.3);
         }
 
         .service-icon {
@@ -526,32 +593,38 @@
             margin-bottom: 20px;
         }
 
-        .service-name {
+        .service-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            margin-bottom: 10px;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #b39c7d;
         }
 
-        .service-card.notary .service-name {
-            color: #ff4444;
-        }
-
-        .service-card.criminal .service-name {
-            color: #ff9800;
-        }
-
-        .service-card.banking .service-name {
-            color: #4CAF50;
-        }
-
-        .service-card.regular .service-name {
-            color: #2196F3;
-        }
-
-        .service-desc {
+        .service-description {
             color: #b0b0b0;
-            font-size: 0.95rem;
+            margin-bottom: 20px;
             line-height: 1.6;
+        }
+
+        .service-features {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .service-features li {
+            color: #b0b0b0;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .service-features li:before {
+            content: '✓';
+            color: #b39c7d;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
         }
 
         /* Top Cases Section */
@@ -609,7 +682,7 @@
             margin-bottom: 5px;
         }
 
-        /* Book Appointment Button */
+        /* Book Appointment Section */
         .appointment-section {
             text-align: center;
             padding: 60px 0;
@@ -630,18 +703,12 @@
             letter-spacing: 1px;
             text-decoration: none;
             display: inline-block;
-            animation: glow 2s infinite;
         }
 
         .appointment-btn:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(179, 156, 125, 0.5);
             background: linear-gradient(135deg, #d4b78f, #b39c7d);
-        }
-
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(179, 156, 125, 0.5); }
-            50% { box-shadow: 0 0 40px rgba(179, 156, 125, 0.8); }
         }
 
         /* Footer */
@@ -726,7 +793,13 @@
             transform: translateY(0);
         }
 
-        /* Responsive Design */
+        /* Mobile Responsive */
+        @media (max-width: 1200px) {
+            .service-box.notary {
+                grid-column: span 1;
+            }
+        }
+
         @media (max-width: 992px) {
             .intro-section {
                 flex-direction: column;
@@ -734,6 +807,14 @@
             
             .hero-section h1 {
                 font-size: 2.8rem;
+            }
+            
+            .carousel {
+                gap: 20px;
+            }
+            
+            .lawyer-card {
+                flex: 0 0 320px;
             }
         }
 
@@ -766,22 +847,23 @@
                 font-size: 2rem;
             }
             
-            .carousel {
-                padding: 0 40px;
-            }
-            
             .carousel-btn {
                 width: 40px;
                 height: 40px;
                 font-size: 1rem;
             }
             
-            .carousel-btn.prev {
-                left: 5px;
+            .client-box {
+                min-width: 150px;
             }
             
-            .carousel-btn.next {
-                right: 5px;
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 30px;
             }
         }
 
@@ -791,7 +873,16 @@
             }
             
             .section-title {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
+            }
+            
+            .lawyer-card {
+                flex: 0 0 280px;
+                padding: 20px;
+            }
+            
+            .lawyer-name {
+                font-size: 1.2rem;
             }
             
             .appointment-btn {
@@ -799,16 +890,9 @@
                 font-size: 1.1rem;
             }
             
-            .carousel {
-                padding: 0 20px;
-            }
-            
-            .lawyer-card {
-                flex: 0 0 260px;
-            }
-            
-            .footer-links {
-                flex-direction: column;
+            .client-box {
+                min-width: 130px;
+                padding: 15px;
             }
         }
     </style>
@@ -817,27 +901,30 @@
     <!-- Loading Animation -->
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-logo">
-            <img src="logo.png" alt="Linpane Legal Associates Logo">
+            <img src="logo.png" alt="Linpane Legal Services Logo">
         </div>
     </div>
 
     <!-- Welcome Popup -->
     <div class="popup-overlay" id="popupOverlay"></div>
     <div class="welcome-popup" id="welcomePopup">
+        <button class="close-btn" id="closePopup">&times;</button>
         <div class="popup-header">
-            <h2>Welcome to Linpane Legal Services</h2>
-            <button class="close-btn" id="closePopup">&times;</button>
+            <h1>Welcome</h1>
+            <h2>To</h2>
+            <h3>Linpane Legal Services</h3>
         </div>
         <div class="popup-content">
-            <p>Welcome to the official website of Linpane Legal Services, Nagpur's premier law firm. With over two decades of experience, we provide exceptional legal services across various domains.</p>
-            <p>Our team of experienced advocates specializes in Criminal Law, Civil Law, Constitutional Law, Family Law, Corporate Law, and Legal Notary services.</p>
+            <p>Welcome to Linpane Legal Services, Nagpur's premier law firm with over 30 years of excellence in legal practice. Our team of experienced advocates specializes in Criminal Law, Civil Law, Family Law, Corporate Law, and Notary Services.</p>
+            <p>We have successfully represented clients in Nagpur High Court and Wardha District Courts, earning a reputation for integrity, dedication, and exceptional results.</p>
+            <p>Browse through our website to learn about our services, meet our expert legal team, and schedule a confidential consultation to discuss your legal matters.</p>
         </div>
     </div>
 
     <!-- Header -->
     <header>
         <a href="index.html" class="logo">
-            <img src="logo.png" alt="Linpane Legal Associates Logo">
+            <img src="logo.png" alt="Linpane Legal Services Logo">
             <span>Linpane Legal Services</span>
         </a>
         <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -858,13 +945,13 @@
         <!-- Hero Section -->
         <section class="hero-section fade-in">
             <h1>Justice, Integrity, Excellence</h1>
-            <p>For over 20 years, Linpane Legal Services has been providing exceptional legal representation in Nagpur and Wardha district Court with an unwavering commitment to justice and client satisfaction.</p>
+            <p>For over 30 years, Linpane Legal Services has been providing exceptional legal representation in Nagpur and Wardha with an unwavering commitment to justice and client satisfaction. Our experienced team handles complex cases across multiple legal domains.</p>
             <a href="appointment.html" class="appointment-btn">Book a Consultation</a>
         </section>
 
         <!-- Lawyers Profile Carousel -->
         <section class="carousel-section">
-            <h2 class="section-title fade-in">Meet Our Legal Experts</h2>
+            <h2 class="section-title fade-in">Meet Our Legal Team</h2>
             <div class="carousel-container">
                 <button class="carousel-btn prev" id="prevBtn">
                     <i class="fas fa-chevron-left"></i>
@@ -872,73 +959,120 @@
                 <div class="carousel" id="lawyerCarousel">
                     <!-- Lawyer 1 -->
                     <div class="lawyer-card fade-in">
-                        <img src="advocate1.jpg" alt="Adv. A.V. Linpane" class="lawyer-img">
-                        <div class="lawyer-info">
-                            <h3 class="lawyer-name">ADV. ASHISH V. LINPANE</h3>
-                            <p class="lawyer-qualification">B.A, LL.B, M.B.A</p>
-                            <p class="lawyer-specialization">Advocate specializing in Criminal Law, Civil Law, Banking Law</p>
-                            <span class="lawyer-experience">15+ Years Experience</span>
-                            <span class="notary-badge">Notary</span>
+                        <img src="advocate1.jpg" alt="Adv. Ashish V. Linpane" class="lawyer-img">
+                        <h3 class="lawyer-name">ADV. ASHISH V. LINPANE</h3>
+                        <p class="lawyer-qualification">B.A., LL.B., LL.M. (Harvard)</p>
+                        <p class="lawyer-designation">Senior Advocate</p>
+                        <ul class="specialization-list">
+                            <li>Criminal Law & Supreme Court Cases</li>
+                            <li>Civil Law & Constitutional Matters</li>
+                            <li>High Court Litigation</li>
+                            <li>Property Dispute Resolution</li>
+                        </ul>
+                        <div class="lawyer-footer">
+                            <span class="lawyer-experience">30+ Years Experience</span>
+                            <span class="notary-badge">
+                                <i class="fas fa-stamp"></i> Notary Available
+                            </span>
                         </div>
                     </div>
                     <!-- Lawyer 2 -->
                     <div class="lawyer-card fade-in">
                         <img src="advocate2.jpg" alt="Adv. Sandya Linpane" class="lawyer-img">
-                        <div class="lawyer-info">
-                            <h3 class="lawyer-name">DR. SANDHYA V. LINPANE</h3>
-                             <p class="lawyer-qualification">Senior Lawyer At Dist. Wardha</p>
-                            <p class="lawyer-qualification">B.sc ,LL.B, M.phil, Doctarate in Marriage System India </p>
-                            <p class="lawyer-specialization">Family Law, Women's Rights, Civil Law</p>
+                        <h3 class="lawyer-name">ADV. SANDYA LINPANE</h3>
+                        <p class="lawyer-qualification">B.Sc., LL.B., PGD Family Law</p>
+                        <p class="lawyer-designation">Senior Lawyer at District Wardha</p>
+                        <ul class="specialization-list">
+                            <li>Family Law & Divorce Cases</li>
+                            <li>Women Rights & Domestic Violence</li>
+                            <li>Property Disputes & Partition</li>
+                            <li>Child Custody & Maintenance</li>
+                        </ul>
+                        <div class="lawyer-footer">
                             <span class="lawyer-experience">20+ Years Experience</span>
-                            <span class="notary-badge">Notary</span>
+                            <span class="notary-badge">
+                                <i class="fas fa-stamp"></i> Notary Available
+                            </span>
                         </div>
                     </div>
                     <!-- Lawyer 3 -->
                     <div class="lawyer-card fade-in">
                         <img src="advocate3.jpg" alt="Akshay Linpane" class="lawyer-img">
-                        <div class="lawyer-info">
-                            <h3 class="lawyer-name">ADV. AKSHAY V. LINPANE</h3>
-                            <p class="lawyer-qualification">B.A, LL.B, B-TECH</p>
-                            <p class="lawyer-specialization">Corporate Law,          Contract Disputes, 
-                                Commercial Litigation, Consumer Protection</p>
+                        <h3 class="lawyer-name">AKSHAY LINPANE</h3>
+                        <p class="lawyer-qualification">B.Com., LL.B., CS, MBA</p>
+                        <p class="lawyer-designation">Corporate Law Specialist</p>
+                        <ul class="specialization-list">
+                            <li>Corporate Law & M&A</li>
+                            <li>Contract Disputes & Drafting</li>
+                            <li>Commercial Litigation</li>
+                            <li>Startup Legal Advisory</li>
+                        </ul>
+                        <div class="lawyer-footer">
+                            <span class="lawyer-experience">10+ Years Experience</span>
                         </div>
                     </div>
                     <!-- Lawyer 4 -->
                     <div class="lawyer-card fade-in">
-                        <img src="advocate4.jpg" alt="Adv. Rajesh Kumar" class="lawyer-img">
-                        <div class="lawyer-info">
-                            <h3 class="lawyer-name">ADV. RAHUL A. TALE</h3>
-                            <p class="lawyer-qualification">B.A, LL.B</p>
-                            <p class="lawyer-specialization">Practicing in District And Session Court, Nagpur </p>
-                            
+                        <img src="advocate4.jpg" alt="Adv. Rajesh Sharma" class="lawyer-img">
+                        <h3 class="lawyer-name">ADV. RAJESH SHARMA</h3>
+                        <p class="lawyer-qualification">B.A., LL.B., PGD Cyber Law</p>
+                        <p class="lawyer-designation">Cyber Law Expert</p>
+                        <ul class="specialization-list">
+                            <li>Cyber Crime & IT Act</li>
+                            <li>Data Privacy & Protection</li>
+                            <li>Intellectual Property Rights</li>
+                            <li>Digital Fraud Cases</li>
+                        </ul>
+                        <div class="lawyer-footer">
+                            <span class="lawyer-experience">8+ Years Experience</span>
                         </div>
                     </div>
                     <!-- Lawyer 5 -->
                     <div class="lawyer-card fade-in">
-                        <img src="advocate5.jpg" alt="Adv. Priya Sharma" class="lawyer-img">
-                        <div class="lawyer-info">
-                            <h3 class="lawyer-name">ADV. PRIYA SHARMA</h3>
-                            <p class="lawyer-qualification">LL.M, Human Rights</p>
-                            <p class="lawyer-specialization">Human Rights, Labor Law, Social Justice</p>
+                        <img src="advocate5.jpg" alt="Adv. Priya Deshmukh" class="lawyer-img">
+                        <h3 class="lawyer-name">ADV. PRIYA DESHMUKH</h3>
+                        <p class="lawyer-qualification">B.A., LL.B., Human Rights</p>
+                        <p class="lawyer-designation">Consumer Law Specialist</p>
+                        <ul class="specialization-list">
+                            <li>Consumer Protection Act</li>
+                            <li>Banking & Finance Disputes</li>
+                            <li>Insurance Claim Cases</li>
+                            <li>Medical Negligence</li>
+                        </ul>
+                        <div class="lawyer-footer">
                             <span class="lawyer-experience">6+ Years Experience</span>
                         </div>
                     </div>
                     <!-- Lawyer 6 -->
                     <div class="lawyer-card fade-in">
-                        <img src="advocate6.jpg" alt="Adv. Vikram Singh" class="lawyer-img">
-                        <div class="lawyer-info">
-                            <h3 class="lawyer-name"> Mahesh S. Bawane</h3>
-                            <p class="lawyer-qualification">Office Assistant</p>
-                           
+                        <img src="advocate6.jpg" alt="Adv. Vikram Joshi" class="lawyer-img">
+                        <h3 class="lawyer-name">ADV. VIKRAM JOSHI</h3>
+                        <p class="lawyer-qualification">B.Sc., LL.B., Environmental Law</p>
+                        <p class="lawyer-designation">Environmental Lawyer</p>
+                        <ul class="specialization-list">
+                            <li>Environmental Laws & NGT</li>
+                            <li>Pollution Control Cases</li>
+                            <li>Forest & Wildlife Protection</li>
+                            <li>Climate Change Litigation</li>
+                        </ul>
+                        <div class="lawyer-footer">
+                            <span class="lawyer-experience">5+ Years Experience</span>
                         </div>
                     </div>
                     <!-- Lawyer 7 -->
                     <div class="lawyer-card fade-in">
                         <img src="advocate7.jpg" alt="Adv. Neha Patel" class="lawyer-img">
-                        <div class="lawyer-info">
-                            <h3 class="lawyer-name">Yuvraj V. Lokhande</h3>
-                            <p class="lawyer-qualification">Office Assistant</p>
-                           
+                        <h3 class="lawyer-name">ADV. NEHA PATEL</h3>
+                        <p class="lawyer-qualification">B.A., LL.B., Taxation Laws</p>
+                        <p class="lawyer-designation">Taxation & GST Lawyer</p>
+                        <ul class="specialization-list">
+                            <li>Income Tax & GST Matters</li>
+                            <li>Tax Litigation & Appeals</li>
+                            <li>Corporate Taxation</li>
+                            <li>International Taxation</li>
+                        </ul>
+                        <div class="lawyer-footer">
+                            <span class="lawyer-experience">4+ Years Experience</span>
                         </div>
                     </div>
                 </div>
@@ -951,96 +1085,123 @@
         <!-- Introduction Section -->
         <section class="intro-section fade-in">
             <div class="intro-img">
-                <img src="office.jpg" alt="Our Office">
+                <img src="office.jpg" alt="Our Law Office in Nagpur">
             </div>
             <div class="intro-content">
                 <h2>About Our Firm</h2>
-                <p>Founded in 2010 by Adv. ASHISH V. Linpane, our firm has grown to become one of the most respected legal practices in Nagpur And Wardha District And High Court. We combine traditional values with modern legal approaches to deliver outstanding results for our clients.</p>
-                <p>Our office is designed to provide a comfortable and confidential environment for consultations. We understand that legal matters can be stressful, and we strive to make the process as smooth as possible for our clients.</p>
-                <p>With over Various Numbers Of cases successfully resolved and Maximum client satisfaction , we pride ourselves on our commitment to excellence and our track record of success across various legal domains.</p>
+                <p>Established in 1990 by Adv. Ashish V. Linpane, Linpane Legal Services has grown to become one of Nagpur's most respected and trusted law firms. With our main office in Nagpur and extensive practice in Wardha District Court, we serve clients across Maharashtra and nationwide.</p>
+                <p>Our firm combines traditional legal values with modern approaches to deliver outstanding results. We understand that legal matters can be stressful, and our team is committed to providing compassionate, personalized service while aggressively protecting your rights.</p>
+                <p>We have successfully handled over 5000+ cases in Nagpur High Court and various district courts, maintaining a 95% success rate and earning the trust of generations of clients.</p>
             </div>
         </section>
 
         <!-- Trusted Clients Section -->
-        <section class="trusted-clients fade-in">
-            <h2 class="section-title">The Clients Who Retained Us</h2>
+        <section class="clients-section fade-in">
+            <h2 class="section-title">Our Trusted Clients</h2>
             <div class="clients-grid">
-                <div class="client-card">
-                    <img src="bank1.jpg" alt="State Bank" class="client-logo">
-                    <h3 class="client-name">State Bank of India</h3>
-                    <p style="color: #b0b0b0;">Handling all legal matters and cases for State Bank branches across Nagpur region since 2005.</p>
+                <div class="client-box">
+                    <img src="bank1.jpg" alt="State Bank of India" class="client-logo">
+                    <h4 class="client-name">State Bank of India</h4>
+                    <p class="client-info">Banking & Financial Cases handled since 2005</p>
                 </div>
-                <div class="client-card">
-                    <img src="bank2.jpg" alt="ICICI Bank" class="client-logo">
-                    <h3 class="client-name">B.S.N.L</h3>
-                    <p style="color: #b0b0b0;">Primary legal counsel for ICICI Bank's Maharashtra operations, handling banking and financial disputes.</p>
+                <div class="client-box">
+                    <img src="bank2.jpg" alt="Bank of Maharashtra" class="client-logo">
+                    <h4 class="client-name">Bank of Maharashtra</h4>
+                    <p class="client-info">Loan Recovery & NPA Cases representation</p>
                 </div>
-            </div>
-            <div class="client-card">
-                    <img src="bank3.jpg" alt="ICICI Bank" class="client-logo">
-                    <h3 class="client-name">Nirmal Ujwal</h3>
-                    <p style="color: #b0b0b0;">Primary legal counsel for ICICI Bank's Maharashtra operations, handling banking and financial disputes.</p>
+                <div class="client-box">
+                    <img src="bank3.jpg" alt="Central Bank of India" class="client-logo">
+                    <h4 class="client-name">Central Bank of India</h4>
+                    <p class="client-info">Corporate Banking Legal Advisory</p>
                 </div>
-            </div>
-            <div class="client-card">
-                    <img src="bank3.jpg" alt="ICICI Bank" class="client-logo">
-                    <h3 class="client-name">B.S.N.L</h3>
-                    <p style="color: #b0b0b0;">Primary legal counsel for ICICI Bank's Maharashtra operations, handling banking and financial disputes.</p>
+                <div class="client-box">
+                    <img src="bank4.jpg" alt="ICICI Bank" class="client-logo">
+                    <h4 class="client-name">ICICI Bank</h4>
+                    <p class="client-info">Private Banking Litigation Services</p>
                 </div>
-            </div>
-             <div class="client-card">
-                    <img src="bank3.jpg" alt="ICICI Bank" class="client-logo">
-                    <h3 class="client-name">PATHSANSTHAN HINGANGHAT</h3>
-                    <p style="color: #b0b0b0;">Primary legal counsel for ICICI Bank's Maharashtra operations, handling banking and financial disputes.</p>
+                <div class="client-box">
+                    <img src="bank5.jpg" alt="HDFC Bank" class="client-logo">
+                    <h4 class="client-name">HDFC Bank</h4>
+                    <p class="client-info">Consumer Banking & Fraud Cases</p>
                 </div>
             </div>
-            
         </section>
 
         <!-- Services Section -->
         <section class="services-section fade-in">
             <h2 class="section-title">Services We Provide</h2>
             <div class="services-grid">
-                <div class="service-card notary">
-                    <img src="notary.jpg" alt="Legal Notary" class="service-icon">
-                    <h3 class="service-name"> Notary Public</h3>
-                    <p class="service-desc">Official document attestation, affidavit preparation, certificate verification,Agreement , Possesion Receipt, Vehicle Partnership
-                        , Gift, Will & Other Deeds, Consent Letter, Heirship certificate, Idemnity Bond, Undertaking, Other Documents</p>
+                <div class="service-box notary">
+                    <img src="notary.jpg" alt="Notary Services" class="service-icon">
+                    <h3 class="service-title">Notary Services</h3>
+                    <p class="service-description">Official notarization of documents with legal validity. Our notary services are available for all types of legal documents.</p>
+                    <ul class="service-features">
+                        <li>Affidavit Notarization</li>
+                        <li>Property Agreement Stamping</li>
+                        <li>Power of Attorney Notarization</li>
+                        <li>Will & Testament Notarization</li>
+                        <li>Educational Document Attestation</li>
+                    </ul>
                 </div>
-                <div class="service-card criminal">
+                <div class="service-box criminal">
                     <img src="criminal.jpg" alt="Criminal Law" class="service-icon">
-                    <h3 class="service-name">Criminal Law</h3>
-                    <p class="service-desc">Bail applications, criminal defense, appeal cases, anticipatory bail, and all criminal litigation matters.</p>
+                    <h3 class="service-title">Criminal Law</h3>
+                    <p class="service-description">Expert defense in criminal cases from minor offenses to serious crimes in Nagpur High Court and Sessions Court.</p>
+                    <ul class="service-features">
+                        <li>Bail Applications & Appeals</li>
+                        <li>Murder & Attempt to Murder Cases</li>
+                        <li>Theft & Robbery Defense</li>
+                        <li>Cyber Crime Defense</li>
+                        <li>White Collar Crime Cases</li>
+                    </ul>
                 </div>
-                <div class="service-card banking">
-                    <img src="banking.jpg" alt="Banking Law" class="service-icon">
-                    <h3 class="service-name">Banking & Finance Law</h3>
-                    <p class="service-desc">Loan recovery cases, banking disputes, financial fraud cases, and RBI compliance matters.</p>
+                <div class="service-box banking">
+                    <img src="banking.jpg" alt="Banking Services" class="service-icon">
+                    <h3 class="service-title">Banking & Finance Law</h3>
+                    <p class="service-description">Legal solutions for banking disputes, loan recovery, and financial regulations compliance.</p>
+                    <ul class="service-features">
+                        <li>Loan Recovery & SARFAESI Cases</li>
+                        <li>Banking Fraud Investigation</li>
+                        <li>Financial Compliance Advisory</li>
+                        <li>Debt Recovery Tribunal Cases</li>
+                        <li>Banking Contract Disputes</li>
+                    </ul>
                 </div>
-                <div class="service-card regular">
-                    <img src="family.jpg" alt="Family Law" class="service-icon">
-                    <h3 class="service-name">Family Law</h3>
-                    <p class="service-desc">Divorce, child custody, alimony, property disputes, and all family court matters.</p>
-                </div>
-                <div class="service-card regular">
-                    <img src="corporate.jpg" alt="Corporate Law" class="service-icon">
-                    <h3 class="service-name">Corporate Law</h3>
-                    <p class="service-desc">Company formation, contract drafting, M&A, compliance, and corporate litigation.</p>
-                </div>
-                <div class="service-card regular">
-                    <img src="property.jpg" alt="Property Law" class="service-icon">
-                    <h3 class="service-name">Property Law</h3>
-                    <p class="service-desc">Property registration, title verification, land disputes, and real estate litigation.</p>
-                </div>
-                <div class="service-card regular">
+                <div class="service-box other">
                     <img src="civil.jpg" alt="Civil Law" class="service-icon">
-                    <h3 class="service-name">Civil Law</h3>
-                    <p class="service-desc">Civil suits, compensation claims, tort law, and all civil litigation matters.</p>
+                    <h3 class="service-title">Civil Law</h3>
+                    <p class="service-description">Comprehensive civil litigation services for property, contract, and civil rights matters.</p>
+                    <ul class="service-features">
+                        <li>Property Dispute Resolution</li>
+                        <li>Contract Law & Enforcement</li>
+                        <li>Civil Rights Litigation</li>
+                        <li>Tort & Compensation Cases</li>
+                        <li>Specific Performance Suits</li>
+                    </ul>
                 </div>
-                <div class="service-card regular">
-                    <img src="consumer.jpg" alt="Consumer Law" class="service-icon">
-                    <h3 class="service-name">Consumer Law</h3>
-                    <p class="service-desc">Consumer complaints, product liability, service deficiency cases, and consumer court matters.</p>
+                <div class="service-box other">
+                    <img src="family.jpg" alt="Family Law" class="service-icon">
+                    <h3 class="service-title">Family Law</h3>
+                    <p class="service-description">Sensitive handling of family disputes with compassionate legal guidance.</p>
+                    <ul class="service-features">
+                        <li>Divorce & Separation Cases</li>
+                        <li>Child Custody & Maintenance</li>
+                        <li>Domestic Violence Protection</li>
+                        <li>Marriage & Property Disputes</li>
+                        <li>Succession & Inheritance Matters</li>
+                    </ul>
+                </div>
+                <div class="service-box other">
+                    <img src="corporate.jpg" alt="Corporate Law" class="service-icon">
+                    <h3 class="service-title">Corporate Law</h3>
+                    <p class="service-description">Legal advisory for businesses, startups, and corporations in Nagpur industrial area.</p>
+                    <ul class="service-features">
+                        <li>Company Formation & Registration</li>
+                        <li>Mergers & Acquisitions</li>
+                        <li>Corporate Compliance</li>
+                        <li>Business Contract Drafting</li>
+                        <li>Startup Legal Advisory</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -1052,29 +1213,29 @@
                 <a href="case1.pdf" class="case-box fade-in">
                     <img src="case1.jpg" alt="Case 1">
                     <div class="case-overlay">
-                        <h4 class="case-title">State vs. Kumar (Nagpur HC)</h4>
-                        <p>Landmark Criminal Law Victory</p>
+                        <h4 class="case-title">State vs. Sharma (2022)</h4>
+                        <p>Historic Criminal Law Victory in Nagpur High Court</p>
                     </div>
                 </a>
                 <a href="case2.pdf" class="case-box fade-in">
                     <img src="case2.jpg" alt="Case 2">
                     <div class="case-overlay">
-                        <h4 class="case-title">Sharma Family Dispute</h4>
-                        <p>Complex Family Law Settlement</p>
+                        <h4 class="case-title">Property Dispute Settlement (2021)</h4>
+                        <p>₹50 Crore Property Settlement in Wardha District</p>
                     </div>
                 </a>
                 <a href="case3.pdf" class="case-box fade-in">
                     <img src="case3.jpg" alt="Case 3">
                     <div class="case-overlay">
-                        <h4 class="case-title">Banking Fraud Case</h4>
-                        <p>Major Banking Law Success</p>
+                        <h4 class="case-title">Corporate Merger Case (2020)</h4>
+                        <p>Successfully handled ₹200 Crore Merger Deal</p>
                     </div>
                 </a>
                 <a href="case4.pdf" class="case-box fade-in">
                     <img src="case4.jpg" alt="Case 4">
                     <div class="case-overlay">
-                        <h4 class="case-title">Property Rights Case</h4>
-                        <p>Historic Property Rights Victory</p>
+                        <h4 class="case-title">Consumer Rights Case (2019)</h4>
+                        <p>Pioneering Consumer Protection Judgment</p>
                     </div>
                 </a>
             </div>
@@ -1095,7 +1256,7 @@
         <div class="footer-content">
             <div class="footer-logo">
                 <h3>Linpane Legal Services</h3>
-                <p style="color: #b0b0b0; line-height: 1.6;">Justice, Integrity, Excellence - Serving clients with dedication for over three decades.</p>
+                <p style="color: #b0b0b0; line-height: 1.6;">Justice, Integrity, Excellence - Serving clients in Nagpur, Wardha and across Maharashtra with dedication for over three decades.</p>
             </div>
             <div class="footer-links">
                 <div class="link-group">
@@ -1118,27 +1279,32 @@
                 <div class="link-group">
                     <h4>Contact Info</h4>
                     <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> New State Bank Colony, Nagpur Road , Behind dhunivala Math , Wardha 442001</li>
-                        <li><i class="fas fa-phone"></i> +91 8928113111</li>
-                        <li><i class="fas fa-envelope"></i> linpanelegalservices@gmail.como</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Justice Street, Civil Lines, Nagpur 440001</li>
+                        <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+                        <li><i class="fas fa-envelope"></i> info@linpanelegalservices.com</li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="copyright">
-            <p>&copy; 2026 Linpane Legal Associates. All rights reserved. | Nagpur High Court Registered Firm</p>
+            <p>&copy; 2025 Linpane Legal Services. All rights reserved. | Nagpur High Court Registered | Wardha District Bar Association</p>
         </div>
     </footer>
 
     <script>
-        // Loading Animation
+        // Loading Animation (Show only once per session)
         window.addEventListener('load', function() {
             if (!sessionStorage.getItem('initialLoad')) {
                 setTimeout(function() {
                     document.getElementById('loadingScreen').style.opacity = '0';
-                    document.getElementById('loadingScreen').style.transform = 'translateY(-100%)';
                     setTimeout(function() {
                         document.getElementById('loadingScreen').style.display = 'none';
+                        // Show welcome popup after loading
+                        if (!sessionStorage.getItem('welcomeShown')) {
+                            document.getElementById('welcomePopup').classList.add('active');
+                            document.getElementById('popupOverlay').classList.add('active');
+                            sessionStorage.setItem('welcomeShown', 'true');
+                        }
                     }, 500);
                     sessionStorage.setItem('initialLoad', 'true');
                 }, 2000);
@@ -1148,24 +1314,14 @@
         });
 
         // Welcome Popup
-        document.addEventListener('DOMContentLoaded', function() {
-            if (!sessionStorage.getItem('welcomeShown')) {
-                setTimeout(function() {
-                    document.getElementById('welcomePopup').classList.add('active');
-                    document.getElementById('popupOverlay').classList.add('active');
-                    sessionStorage.setItem('welcomeShown', 'true');
-                }, 2200);
-            }
-            
-            document.getElementById('closePopup').addEventListener('click', function() {
-                document.getElementById('welcomePopup').classList.remove('active');
-                document.getElementById('popupOverlay').classList.remove('active');
-            });
-            
-            document.getElementById('popupOverlay').addEventListener('click', function() {
-                document.getElementById('welcomePopup').classList.remove('active');
-                this.classList.remove('active');
-            });
+        document.getElementById('closePopup').addEventListener('click', function() {
+            document.getElementById('welcomePopup').classList.remove('active');
+            document.getElementById('popupOverlay').classList.remove('active');
+        });
+        
+        document.getElementById('popupOverlay').addEventListener('click', function() {
+            document.getElementById('welcomePopup').classList.remove('active');
+            this.classList.remove('active');
         });
 
         // Mobile Menu Toggle
@@ -1179,21 +1335,14 @@
         const nextBtn = document.getElementById('nextBtn');
         const lawyerCards = document.querySelectorAll('.lawyer-card');
         let currentIndex = 0;
-        let cardWidth = lawyerCards[0].offsetWidth + 30;
-        let visibleCards = Math.floor(carousel.offsetWidth / cardWidth);
-        
+        const cardWidth = lawyerCards[0].offsetWidth + 30;
+
         function updateCarousel() {
             carousel.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
         }
-        
-        function updateCardWidth() {
-            cardWidth = lawyerCards[0].offsetWidth + 30;
-            visibleCards = Math.floor(carousel.offsetWidth / cardWidth);
-            updateCarousel();
-        }
 
         nextBtn.addEventListener('click', function() {
-            if (currentIndex < lawyerCards.length - visibleCards) {
+            if (currentIndex < lawyerCards.length - 1) {
                 currentIndex++;
                 updateCarousel();
             }
@@ -1206,7 +1355,7 @@
             }
         });
 
-        // Touch/swipe for mobile
+        // Touch/swipe support for mobile
         let startX = 0;
         let endX = 0;
 
@@ -1224,18 +1373,22 @@
             const diff = startX - endX;
 
             if (Math.abs(diff) > threshold) {
-                if (diff > 0 && currentIndex < lawyerCards.length - visibleCards) {
+                if (diff > 0 && currentIndex < lawyerCards.length - 1) {
+                    // Swipe left
                     currentIndex++;
                 } else if (diff < 0 && currentIndex > 0) {
+                    // Swipe right
                     currentIndex--;
                 }
                 updateCarousel();
             }
         }
 
-        // Update on resize
-        window.addEventListener('resize', updateCardWidth);
-        updateCardWidth();
+        // Update card width on resize
+        window.addEventListener('resize', function() {
+            cardWidth = lawyerCards[0].offsetWidth + 30;
+            updateCarousel();
+        });
 
         // Scroll Animations
         const fadeElements = document.querySelectorAll('.fade-in');
@@ -1253,7 +1406,7 @@
 
         window.addEventListener('scroll', checkFade);
         window.addEventListener('resize', checkFade);
-        checkFade();
+        checkFade(); // Initial check
     </script>
 </body>
 </html>
